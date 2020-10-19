@@ -5,7 +5,7 @@ A Rust CSV parser. providing a custom API for serialization without needing othe
 A variety of reasons including the fact that this library does not require any external code to perform its task.
 
 Some of the features are as follows:
-- Serde free serialization<sup>[1](#reference-1-serde-free-serialization)</sup>
+- Serde free serialization<sup>[ref. 1](#reference-1-serde-free-serialization)</sup>
 - easy to use API
 - general, flexible output format 
 

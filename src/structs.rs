@@ -1,7 +1,6 @@
 #[cfg(feature = "std")]
 use std::ops::Index;
 use std::collections::HashMap;
-use std::collections::hash_map::{Iter, IntoIter};
 
 #[cfg(feature = "std")]
 /// Represents a single row of data

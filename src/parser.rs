@@ -5,14 +5,12 @@ pub fn parse(tree: Vec<Token>, has_headers: bool) -> Content {
     let mut line = String::new();
     let mut body: String = String::new();
     let mut previous: Option<Token> = None;
-    let mut index: usize = 0;
     let mut in_head = true;
     let mut in_quote = false;
     let mut headers = Vec::<String>::new();
     let mut row = Vec::<String>::new();
     let mut content = Content::new();
     for token in tree {
-        index += 1;
         match token.token_type {
             Tokens::Escape => {}
             Tokens::Delimiter => {

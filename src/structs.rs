@@ -13,18 +13,6 @@ pub struct Entry {
     pub values: HashMap<String, String>,
 }
 
-
-#[cfg(feature = "nostd")]
-/// Represents a single row of data
-#[derive(Debug, Clone)]
-pub struct Entry {
-    index: usize,
-    value_iter: Vec<(String, String)>,
-    null_val: String,
-    pub values: Vec<(String, String)>,
-}
-
-
 /// Represents the entire parsed content
 #[derive(Debug, Clone)]
 pub struct Content {

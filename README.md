@@ -23,3 +23,5 @@ rsv = {version = "0.0.5", features = ["nostd"]}
 You can read the full documentation [here](https://docs.rs/rsv/)
 #### Basic Usage
 coming soon
+
+#### reference 1: "Serde free serialization"

@@ -99,3 +99,4 @@ well, if you found a bug, or you want to request a feature, the best place to re
 --------
 ### References
 #### reference 1: "Serde free serialization"
+this simply means that you are not required to use Serde to serialize your data, a flaw that most of the other CSV libraries seem to share

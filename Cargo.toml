@@ -1,5 +1,8 @@
 [package]
-name = "RSV"
+name = "rsv"
+description = "A customizable CSV data parser"
+readme = "README.md"
+repository = "https://github.com/fatalcenturion/RSV"
 version = "0.1.0"
 authors = ["fatalcenturion <tom.b.2k2@gmail.com>"]
 edition = "2018"

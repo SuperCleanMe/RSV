@@ -1,7 +1,7 @@
-# RSV
-A Rust CSV parser. providing a custom API for serialization without needing other libraries
+# <div align="center">RSV</div>
+<div align="center">A Rust CSV parser. providing a custom API for serialization without needing other libraries.</div>
 
-### Why should i use RSV?
+### Why should I use RSV?
 A variety of reasons including the fact that this library does not require any external code to perform its task.
 
 Some of the features are as follows:
@@ -10,14 +10,13 @@ Some of the features are as follows:
 - general, flexible output format 
 
 ### Installation
-Add this line to your `Cargo.toml`
+Add this line to your `Cargo.toml`:
 ```toml
 rsv = "0.0.5"
 ```
-<br>
 
 ### Documentation
-You can read the full documentation [here](https://docs.rs/rsv/)
+You can read the full documentation [here](https://docs.rs/rsv/).
 #### Basic Usage
 ##### Parsing a basic CSV string:
 ```rust
@@ -41,7 +40,7 @@ let content: Content = read("./path/to/file.csv", ',', true)?;
 ```
 
 ##### Pulling the data from `Content`:
-the `Content` structure is incredibly flexible, you can use it as an `Iterator`, or as an `Index` such as an Array
+The `Content` structure is incredibly flexible, you can use it as an `Iterator`, or as an `Index` such as an Array.
 
 ##### As an `Iterator`:
 ```rust
@@ -83,20 +82,20 @@ let first_row: Entry = content[0];
 
 let entry_name: String = first_row["name"];
 ```
-now, i know what you are thinking "well that is not very rusty", dont worry for all of you die-hard rusty api users, i have an update coming soon for you, but for now im taking it slow and introducing this API first
+Now, I know what you are thinking "well that is not very rusty", dont worry for all of you die-hard rusty api users, I have an update coming soon for you, but for now im taking it slow and introducing this API first.
 
 ### What's Next?
-Well, i have already got some ideas of what i want to provide in the next minor release of this library, and so i will be working very heavily on that for now.
+Well, I have already got some ideas of what I want to provide in the next minor release of this library, and so I will be working very heavily on that for now.
 
-### How can i contribute?
-For now, the only way i would like contributions is through github issues, as these are the easiest for me to track, however that does not rule out the possibilty of PRs, thus, you are welcome to help as much as you want, however i am much slower at responding to PRs than Issues
+### How can I contribute?
+For now, the only way I would like contributions is through GitHub issues, as these are the easiest for me to track, however that does not rule out the possibilty of PRs, thus, you are welcome to help as much as you want, however I am much slower at responding to PRs than Issues.
 
 ### Found a bug? Got a feature request?
-well, if you found a bug, or you want to request a feature, the best place to report these bugs and suggest these features is with a [Github Issue](https://github.com/fatalcenturion/RSV/issues)
+Well, if you found a bug, or you want to request a feature, the best place to report these bugs and suggest these features is with a [Github Issue](https://github.com/fatalcenturion/RSV/issues).
 
-#### Congrat, you made it to the end, i just want to thank you for reading this information.
+#### Congratulations, you made it to the end, I just want to thank you for reading this information.
 
 --------
 ### References
 #### reference 1: "Serde free serialization"
-this simply means that you are not required to use Serde to serialize your data, a flaw that most of the other CSV libraries seem to share
+This simply means that you are not required to use Serde to serialize your data, a flaw that most of the other CSV libraries seem to share

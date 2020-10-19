@@ -1,5 +1,7 @@
 # <div align="center">RSV</div>
-<div align="center">A Rust CSV parser. providing a custom API for serialization without needing other libraries.</div>
+<div align="center">![Rust](https://github.com/fatalcenturion/RSV/workflows/Rust/badge.svg)</div>
+<div align="center">A Rust CSV parser, built for the modern age.</div>
+
 
 ### Why should I use RSV?
 A variety of reasons including the fact that this library does not require any external code to perform its task.

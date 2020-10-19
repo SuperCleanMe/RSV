@@ -1,6 +1,6 @@
 # <div align="center">RSV</div>
 <p align="center">
-    <img src="https://github.com/fatalcenturion/RSV/workflows/Rust/badge.svg" alt="Build Status"></img>
+    <img src="https://github.com/fatalcenturion/RSV/workflows/Rust/badge.svg" alt="Build Status"/> <img alt="GitHub issues" src="https://img.shields.io/github/issues/fatalcenturion/RSV"/> <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/fatalcenturion/RSV"/ >
 </p>
 <div align="center">A Rust CSV parser, built for the modern age.</div>
 

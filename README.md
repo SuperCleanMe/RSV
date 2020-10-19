@@ -20,7 +20,7 @@ rustsv = "0.1.1"
 ```
 
 ### Documentation
-You can read the full documentation [here](https://docs.rs/rsv/).
+You can read the full documentation [here](https://docs.rs/rustsv/).
 #### Basic Usage
 ##### Parsing a basic CSV string:
 ```rust

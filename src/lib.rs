@@ -30,7 +30,7 @@ pub mod prelude;
 ///
 /// Basic usage:
 /// ```no_run
-/// use rsv::prelude::*;
+/// use rustsv::prelude::*;
 /// // Create our input data
 /// let input: String = "surname,initial,address,phone number\
 /// Smith,A,\"14 Made up Drive, Made up City, Ohio\",216-235-3744\
@@ -62,7 +62,7 @@ pub fn parse<A>(content: A, delimiter: char, has_headers: bool) -> structs::Cont
 ///
 /// Basic usage:
 /// ```no_run
-/// use rsv::prelude::*;
+/// use rustsv::prelude::*;
 /// // Parse the `input` into `Content`
 /// let content: Content = read("./path/to/file.csv", ',', true)?;
 /// ```

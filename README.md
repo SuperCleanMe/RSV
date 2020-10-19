@@ -16,7 +16,7 @@ Some of the features are as follows:
 ### Installation
 Add this line to your `Cargo.toml`:
 ```toml
-rsv = "0.0.5"
+rustsv = "0.0.5"
 ```
 
 ### Documentation

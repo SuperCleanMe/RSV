@@ -16,7 +16,7 @@ Some of the features are as follows:
 ### Installation
 Add this line to your `Cargo.toml`:
 ```toml
-rustsv = "0.0.5"
+rustsv = "0.1.1"
 ```
 
 ### Documentation
@@ -24,7 +24,7 @@ You can read the full documentation [here](https://docs.rs/rsv/).
 #### Basic Usage
 ##### Parsing a basic CSV string:
 ```rust
-use rsv::prelude::*;
+use rustsv::prelude::*;
 
 // Create our input data
 let input: String = "surname,initial,address,phone number\
@@ -37,7 +37,7 @@ let content: Content = parse(input, ',', true);
 
 ##### Parsing a CSV file:
 ```rust
-use rsv::prelude::*;
+use rustsv::prelude::*;
 
 // Parse the `input` into `Content`
 let content: Content = read("./path/to/file.csv", ',', true)?;

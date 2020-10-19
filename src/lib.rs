@@ -1,6 +1,8 @@
 #![warn(missing_docs)]
 #![warn(missing_doc_code_examples)]
 
+//!
+
 use std::error::Error;
 
 mod tokenizer;
@@ -11,9 +13,11 @@ pub mod structs;
 
 pub mod prelude;
 
+#[cfg(feature = "nostd")]
 /// Parses the provided String into an instance of `Content`
 ///
 /// The method will deconstruct the provided data, turning it into a special, serialization free structure `Content`
+///
 /// [`content`] the CSV data to parse
 /// [`delimiter`] The delimiter used in the data, for example a pipe (`|`) or a tab (`   `)
 /// [`has_headers`] If the data's first line contains the titles of each column or not
@@ -26,12 +30,11 @@ pub mod prelude;
 ///
 /// Basic usage:
 /// ```no_run
-/// # use crate::rsv::prelude::*;
+/// use crate::rsv::prelude::*;
 /// // Create our input data
 /// let input: String = "surname,initial,address,phone number\
-/// Smith,A,\"14 Made up Drive, Made up City, Ohio\",216-235-3744
-/// Doe,J,\"15 Fake Street, Phonyville, Texas\",210-214-5737
-/// ".to_string();
+/// Smith,A,\"14 Made up Drive, Made up City, Ohio\",216-235-3744\
+/// Doe,J,\"15 Fake Street, Phonyville, Texas\",210-214-5737".to_string();
 ///
 /// // Parse the `input` into `Content`
 /// let content: Content = parse(input, ',', true);
@@ -42,10 +45,11 @@ pub fn parse<A>(content: A, delimiter: char, has_headers: bool) -> structs::Cont
     body
 }
 
-
+#[cfg(feature = "std")]
 /// Reads a file and parses it into an instance of `Content`
 ///
 /// The method takes a path to a file, and then deconstructs the data, turning it into a special, serialization free structure `Content`
+///
 /// [`content`] the CSV data to parse
 /// [`delimiter`] The delimiter used in the data, for example a pipe (`|`) or a tab (`   `)
 /// [`has_headers`] If the data's first line contains the titles of each column or not
@@ -58,8 +62,7 @@ pub fn parse<A>(content: A, delimiter: char, has_headers: bool) -> structs::Cont
 ///
 /// Basic usage:
 /// ```no_run
-/// # use crate::rsv::prelude::*;
-///
+/// use crate::rsv::prelude::*;
 /// // Parse the `input` into `Content`
 /// let content: Content = read("./path/to/file.csv", ',', true)?;
 /// ```

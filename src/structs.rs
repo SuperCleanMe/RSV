@@ -1,7 +1,10 @@
+#[cfg(feature = "std")]
 use std::ops::Index;
 use std::collections::HashMap;
 use std::collections::hash_map::{Iter, IntoIter};
 
+#[cfg(feature = "std")]
+/// Represents a single row of data
 #[derive(Debug, Clone)]
 pub struct Entry {
     index: usize,
@@ -10,6 +13,19 @@ pub struct Entry {
     pub values: HashMap<String, String>,
 }
 
+
+#[cfg(feature = "nostd")]
+/// Represents a single row of data
+#[derive(Debug, Clone)]
+pub struct Entry {
+    index: usize,
+    value_iter: Vec<(String, String)>,
+    null_val: String,
+    pub values: Vec<(String, String)>,
+}
+
+
+/// Represents the entire parsed content
 #[derive(Debug, Clone)]
 pub struct Content {
     index: usize,
@@ -18,6 +34,7 @@ pub struct Content {
     pub rows: Vec<Entry>,
 }
 
+#[cfg(feature = "std")]
 impl Index<usize> for Content {
     type Output = Entry;
 
@@ -40,6 +57,7 @@ impl Index<&str> for Entry {
     }
 }
 
+#[cfg(feature = "std")]
 impl Iterator for Content {
     type Item = Entry;
 
@@ -69,7 +87,7 @@ impl Iterator for Entry {
 }
 
 impl Content {
-    pub fn new() -> Content {
+    pub(crate) fn new() -> Content {
         Content {
             index: 0,
             columns: Vec::new(),
@@ -80,7 +98,7 @@ impl Content {
 }
 
 impl Entry {
-    pub fn from_vec(columns: Vec<String>, headers: Option<Vec<String>>) -> Entry {
+    pub(crate) fn from_vec(columns: Vec<String>, headers: Option<Vec<String>>) -> Entry {
         let mut v = Entry {
             index: 0,
             value_iter: Vec::new(),

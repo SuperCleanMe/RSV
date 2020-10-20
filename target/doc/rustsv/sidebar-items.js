@@ -1,1 +1,0 @@
-initSidebarItems({"fn":[["parse","Parses the provided String into an instance of `Content`"],["read","Reads a file and parses it into an instance of `Content`"]],"mod":[["prelude",""],["structs",""]]});

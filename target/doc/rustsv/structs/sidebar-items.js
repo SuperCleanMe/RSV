@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Content","Represents the entire parsed content"],["Entry","Represents a single row of data"]]});

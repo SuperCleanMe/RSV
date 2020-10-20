@@ -32,6 +32,10 @@ Smith,A,\"14 Made up Drive, Made up City, Ohio\",216-235-3744\
 Doe,J,\"15 Fake Street, Phonyville, Texas\",210-214-5737".to_string();
 
 // Parse the `input` into `Content`
+// The parameters are as follows:
+// 1. Input: String   - The text you wish to parse
+// 2. Delimiter: Char - The character to delimit by
+// 3. Headers: Bool   - If the parser should use the first row in the file as headers
 let content: Content = parse(input, ',', true);
 ```
 
@@ -40,6 +44,10 @@ let content: Content = parse(input, ',', true);
 use rustsv::prelude::*;
 
 // Parse the `input` into `Content`
+// The parameters are as follows:
+// 1. Path: String    - The path to the file ou wish to parse
+// 2. Delimiter: Char - The character to delimit by
+// 3. Headers: Bool   - If the parser should use the first row in the file as headers
 let content: Content = read("./path/to/file.csv", ',', true)?;
 ```
 

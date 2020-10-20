@@ -1,8 +1,51 @@
 #![warn(missing_docs)]
 #![warn(missing_doc_code_examples)]
 
+//! ## What is RustSV?
+//! <p>
+//! RustSV (referred to as RSV) is a CSV parser, built for the modern age.
 //!
-
+//! It focuses on usability, and has the advantage of not requiring the use of [Serde](https://github.com/fatalcenturion/RSV#reference-2-serde-free-serialization) to parse your files into a programmatically readable structure.
+//!
+//! See the source code [here](https://github.com/fatalcenturion/RSV)
+//!
+//! Found a bug? [report it!](https://github.com/fatalcenturion/RSV/issues/new)
+//!
+//! ## Basic usage:
+//!
+//! ### Parsing a string:
+//! ```
+//! use rustsv::prelude::*;
+//! // Create our input data
+//! let input: String = "surname,initial,address,phone number\
+//! Smith,A,\"14 Made up Drive, Made up City, Ohio\",216-235-3744\
+//! Doe,J,\"15 Fake Street, Phonyville, Texas\",210-214-5737".to_string();
+//!
+//! // Parse the `input` into `Content`
+//! // The parameters are as follows:
+//! // 1. Input: String   - The text you wish to parse
+//! // 2. Delimiter: Char - The character to delimit by
+//! // 3. Headers: Bool   - If the parser should use the first row in the file as headers
+//! let content: Content = parse(input, ',', true);
+//! ```
+//! The above method will provide an instance of `Content`
+//!
+//! ### Parsing a file:
+//! ```no_run
+//! use rustsv::prelude::*;
+//! // Create our input data
+//! let input: String = "surname,initial,address,phone number\
+//! Smith,A,\"14 Made up Drive, Made up City, Ohio\",216-235-3744\
+//! Doe,J,\"15 Fake Street, Phonyville, Texas\",210-214-5737".to_string();
+//!
+//! // Parse the `input` into `Content`
+//! // The parameters are as follows:
+//! // 1. Input: String   - The text you wish to parse
+//! // 2. Delimiter: Char - The character to delimit by
+//! // 3. Headers: Bool   - If the parser should use the first row in the file as headers
+//! let content: Content = read("path/to/file.csv", ',', true)?;
+//! ```
+//! The above method will provide a result containing an error, or `Content`
 use std::error::Error;
 
 mod tokenizer;
@@ -16,7 +59,7 @@ pub mod prelude;
 #[cfg(feature = "nostd")]
 /// Parses the provided String into an instance of `Content`
 ///
-/// The method will deconstruct the provided data, turning it into a special, serialization free structure `Content`
+/// The method will deconstruct the provided data, turning it into a special, serialization free structure [`Content`]: structs.Content
 ///
 /// [`content`] the CSV data to parse
 /// [`delimiter`] The delimiter used in the data, for example a pipe (`|`) or a tab (`   `)
@@ -48,15 +91,11 @@ pub fn parse<A>(content: A, delimiter: char, has_headers: bool) -> structs::Cont
 #[cfg(feature = "std")]
 /// Reads a file and parses it into an instance of `Content`
 ///
-/// The method takes a path to a file, and then deconstructs the data, turning it into a special, serialization free structure `Content`
+/// The method takes a path to a file, and then deconstructs the data, turning it into a special, serialization free structure [`Content`]: structs.Content
 ///
-/// [`content`] the CSV data to parse
-/// [`delimiter`] The delimiter used in the data, for example a pipe (`|`) or a tab (`   `)
-/// [`has_headers`] If the data's first line contains the titles of each column or not
-///
-/// [`content`]: #parse.content
-/// [`delimiter`]: #parse.delimiter
-/// [`has_headers`]: #parse.has_headers
+/// `content` the CSV data to parse
+/// `delimiter` The delimiter used in the data, for example a pipe (`|`) or a tab (`   `)
+/// `has_headers` If the data's first line contains the titles of each column or not
 ///
 /// # Examples
 ///

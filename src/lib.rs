@@ -79,6 +79,7 @@ pub fn read<A>(path: A, delimiter: char, has_headers: bool) -> Result<structs::C
 
 #[cfg(test)]
 mod tests {
+    use crate::prelude::*;
     #[test]
     // CSV sample file is provided free of charge by EForExcel (http://eforexcel.com/wp/downloads-18-sample-csv-files-data-sets-for-testing-sales/)
     fn test_parsing() {
@@ -96,5 +97,13 @@ mod tests {
                 println!("{}: {}", reference.0, reference.1);
             }
         }
+    }
+
+    #[test]
+    fn test_random_func() {
+        let input: String = "first,middle,last\ntom,bob,scott".to_string();
+        let content: Content = parse(input, ',', true);
+        println!("Hello, world! content = {:?} content2 = {:?}", content.get(2).is_some(), content[0]);
+        assert_eq!(1, 1);
     }
 }

@@ -2,6 +2,8 @@
 use std::ops::Index;
 use std::collections::HashMap;
 
+
+
 #[cfg(feature = "std")]
 /// Represents a single row of data
 #[derive(Debug, Clone)]
@@ -51,11 +53,11 @@ impl Iterator for Content {
     fn next(&mut self) -> Option<Self::Item> {
         let i = self.index;
         self.index += 1;
-        return if self.rows.len() - 1 > i {
+        return if self.rows.len() - 1 >= i {
             Some(self.rows[i].clone())
         } else {
             None
-        };
+        }
     }
 }
 
@@ -82,6 +84,9 @@ impl Content {
             rows: Vec::new(),
         }
     }
+    pub fn get(&self, index: usize) -> Option<&Entry> {
+        return self.rows.get(index);
+    }
 }
 
 impl Entry {
@@ -105,5 +110,8 @@ impl Entry {
             index += 1;
         };
         v
+    }
+    pub fn get(&self, index: &str) -> Option<&String> {
+        return self.values.get(index);
     }
 }

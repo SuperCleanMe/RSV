@@ -9,7 +9,7 @@
 A variety of reasons including the fact that this library does not require any external code to perform its task.
 
 Some of the features are as follows:
-- Serde free serialization<sup>[ref. 1](#reference-1-serde-free-serialization)</sup>
+- Serde<sup>[ref. 1](#reference-1-serde)</sup> free serialization<sup>[ref. 2](#reference-2-serde-free-serialization)</sup>
 - easy to use API
 - general, flexible output format 
 
@@ -101,5 +101,9 @@ Well, if you found a bug, or you want to request a feature, the best place to re
 
 --------
 ### References
-#### reference 1: "Serde free serialization"
+
+#### reference 1: "Serde"
+Serde is a serialization and deserialization utility, providing the groundwork for almost all of the (de)serialization libraries out there, I am planning to integrate Serde compatibility into RSV in the next big update
+
+#### reference 2: "Serde free serialization"
 This simply means that you are not required to use Serde to serialize your data, a flaw that most of the other CSV libraries seem to share

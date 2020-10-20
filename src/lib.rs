@@ -17,9 +17,9 @@
 //! ```
 //! use rustsv::prelude::*;
 //! // Create our input data
-//! let input: String = "surname,initial,address,phone number\
+//! let input: &str = "surname,initial,address,phone number\
 //! Smith,A,\"14 Made up Drive, Made up City, Ohio\",216-235-3744\
-//! Doe,J,\"15 Fake Street, Phonyville, Texas\",210-214-5737".to_string();
+//! Doe,J,\"15 Fake Street, Phonyville, Texas\",210-214-5737";
 //!
 //! // Parse the `input` into `Content`
 //! // The parameters are as follows:
@@ -32,12 +32,6 @@
 //!
 //! ### Parsing a file:
 //! ```no_run
-//! use rustsv::prelude::*;
-//! // Create our input data
-//! let input: String = "surname,initial,address,phone number\
-//! Smith,A,\"14 Made up Drive, Made up City, Ohio\",216-235-3744\
-//! Doe,J,\"15 Fake Street, Phonyville, Texas\",210-214-5737".to_string();
-//!
 //! // Parse the `input` into `Content`
 //! // The parameters are as follows:
 //! // 1. Input: String   - The text you wish to parse
@@ -75,9 +69,9 @@ pub mod prelude;
 /// ```no_run
 /// use rustsv::prelude::*;
 /// // Create our input data
-/// let input: String = "surname,initial,address,phone number\
+/// let input: &str = "surname,initial,address,phone number\
 /// Smith,A,\"14 Made up Drive, Made up City, Ohio\",216-235-3744\
-/// Doe,J,\"15 Fake Street, Phonyville, Texas\",210-214-5737".to_string();
+/// Doe,J,\"15 Fake Street, Phonyville, Texas\",210-214-5737";
 ///
 /// // Parse the `input` into `Content`
 /// let content: Content = parse(input, ',', true);

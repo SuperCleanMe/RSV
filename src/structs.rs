@@ -5,7 +5,7 @@ use std::collections::HashMap;
 
 
 #[cfg(feature = "std")]
-/// Represents a single row of data
+/// Represents a single row of data in the parsed result.
 #[derive(Debug, Clone)]
 pub struct Entry {
     index: usize,
@@ -14,7 +14,7 @@ pub struct Entry {
     pub values: HashMap<String, String>,
 }
 
-/// Represents the entire parsed content
+/// Represents the entire parsed content, containing an array of `Entry` instances, each representing a single row of data.
 #[derive(Debug, Clone)]
 pub struct Content {
     index: usize,
@@ -84,6 +84,13 @@ impl Content {
             rows: Vec::new(),
         }
     }
+
+    /// Get method
+    /// usage:
+    /// ```no_run
+    /// // this example assumes you already have an instance of `Content` created by the library.
+    /// let value: &Entry = content.get(<index>)?;
+    /// ```
     pub fn get(&self, index: usize) -> Option<&Entry> {
         return self.rows.get(index);
     }
@@ -111,6 +118,13 @@ impl Entry {
         };
         v
     }
+
+    /// Get method
+    /// usage:
+    /// ```no_run
+    /// // this example assumes you already have an instance of `Entry` created by the library.
+    /// let value: String = entry.get("<key>")?;
+    /// ```
     pub fn get(&self, index: &str) -> Option<&String> {
         return self.values.get(index);
     }

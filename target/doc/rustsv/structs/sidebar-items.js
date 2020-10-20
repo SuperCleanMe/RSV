@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Content","Represents the entire parsed content"],["Entry","Represents a single row of data"]]});
+initSidebarItems({"struct":[["Content","Represents the entire parsed content, containing an array of `Entry` instances, each representing a single row of data."],["Entry","Represents a single row of data in the parsed result."]]});

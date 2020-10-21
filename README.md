@@ -58,7 +58,7 @@ The `Content` structure is incredibly flexible, you can use it as an `Iterator`,
 ```rust
 let content: Content = read("./path/to/file.csv", ',', true);
 
-for entry: Entry in content {
+for entry in content {
     //do stuff
 }
 ```

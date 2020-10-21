@@ -16,7 +16,7 @@ Some of the features are as follows:
 ### Installation
 Add this line to your `Cargo.toml`:
 ```toml
-rustsv = "0.1.4"
+rustsv = "0.1.5"
 ```
 
 ### Documentation
@@ -52,7 +52,7 @@ let content: Content = read("./path/to/file.csv", ',', true)?;
 ```
 
 ##### Parsing a remote file, from a URL:
-> This method requires the `http` feature to be enabled
+> This method requires the `http` feature to be enabled <sup>[ref 3](#reference-3-http-feature)</sup>
 ```rust
 use rustsv::prelude::*;
 
@@ -128,3 +128,9 @@ Serde is a serialization and deserialization utility, providing the groundwork f
 
 #### reference 2: "Serde free serialization"
 This simply means that you are not required to use Serde to serialize your data, a flaw that most of the other CSV libraries seem to share
+
+#### reference 3: `http` feature
+To enable the HTTP feature of RSV, modify your dependency for RustSV to look like this:
+```toml
+rustsv = { version = "0.1.5", features = ["http"] }
+```

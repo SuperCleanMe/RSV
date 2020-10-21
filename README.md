@@ -80,7 +80,7 @@ let content: Content = read("./path/to/file.csv", ',', true);
 
 let first_row: Entry = content[0];
 
-for key_pair: (String, String) in first_row {
+for key_pair in first_row {
     println!("Key: {}, Value: {}", key_pair.0, key_pair.1);
 }
 ```

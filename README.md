@@ -45,10 +45,23 @@ use rustsv::prelude::*;
 
 // Parse the `input` into `Content`
 // The parameters are as follows:
-// 1. Path: String    - The path to the file ou wish to parse
+// 1. Path: String    - The path to the file you wish to parse
 // 2. Delimiter: Char - The character to delimit by
 // 3. Headers: Bool   - If the parser should use the first row in the file as headers
 let content: Content = read("./path/to/file.csv", ',', true)?;
+```
+
+##### Parsing a remote file, from a URL:
+> This method requires the `http` feature to be enabled
+```rust
+use rustsv::prelude::*;
+
+// Parse the content of `URL` into `Content`
+// The parameters are as follows:
+// 1. URL: String    - The URL of the file wish to parse
+// 2. Delimiter: Char - The character to delimit by
+// 3. Headers: Bool   - If the parser should use the first row in the file as headers
+let content: Content = fetch("https://domain.tld/path/to/file.csv", ',', true)?;
 ```
 
 ##### Pulling the data from `Content`:

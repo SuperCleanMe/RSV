@@ -17,8 +17,8 @@
 //! ```
 //! use rustsv::prelude::*;
 //! // Create our input data
-//! let input: &str = "surname,initial,address,phone number\
-//! Smith,A,\"14 Made up Drive, Made up City, Ohio\",216-235-3744\
+//! let input: &str = "surname,initial,address,phone number\n\
+//! Smith,A,\"14 Made up Drive, Made up City, Ohio\",216-235-3744\n\
 //! Doe,J,\"15 Fake Street, Phonyville, Texas\",210-214-5737";
 //!
 //! // Parse the `input` into `Content`
@@ -28,19 +28,37 @@
 //! // 3. Headers: Bool   - If the parser should use the first row in the file as headers
 //! let content: Content = parse(input, ',', true);
 //! ```
-//! The above method will provide an instance of `Content`
+//! The above method will provide an instance of [`Content`](structs/struct.Content.html)
 //!
 //! ### Parsing a file:
+//! > Note: this code is correct at the time of documentation, it has the `no_run` tag to ensure the doc tests do not fail due to an unavoidable IO Error
 //! ```no_run
-//! // Parse the `input` into `Content`
+//! use rustsv::prelude::*;
+//!
+//! // Parse the `path`'s content into `Content`
 //! // The parameters are as follows:
-//! // 1. Input: String   - The text you wish to parse
+//! // 1. Path: String   - The text you wish to parse
 //! // 2. Delimiter: Char - The character to delimit by
 //! // 3. Headers: Bool   - If the parser should use the first row in the file as headers
 //! let content: Content = read("path/to/file.csv", ',', true)?;
 //! ```
-//! The above method will provide a result containing an error, or `Content`
+//! The above method will provide a result containing an error, or [`Content`](structs/struct.Content.html)
+//!
+//! ### Parsing a remote file, from a URL:
+//! #### This method requires the `http` feature to be anabled.
+//!  > Note: this code is correct at the time of documentation, it has the `no_run` tag to ensure the doc tests do not fail due to an unavoidable IO Error
+//! ```no_run
+//! use rustsv::prelude::*;
+//! // Parse the `URL`'s content into `Content`
+//! // The parameters are as follows:
+//! // 1. URL: String   - The text you wish to parse
+//! // 2. Delimiter: Char - The character to delimit by
+//! // 3. Headers: Bool   - If the parser should use the first row in the file as headers
+//! let content: Content = fetch("https://domain.tld/path/to/file", ',', true)?;
+//! ```
+//! The above method will provide a result containing an error, or [`Content`](structs/struct.Content.html)
 use std::error::Error;
+
 
 mod tokenizer;
 
@@ -50,42 +68,9 @@ pub mod structs;
 
 pub mod prelude;
 
-#[cfg(feature = "nostd")]
-/// Parses the provided String into an instance of `Content`
+/// Parses the provided String into an instance of [`Content`](structs/struct.Content.html)
 ///
-/// The method will deconstruct the provided data, turning it into a special, serialization free structure [`Content`]: structs.Content
-///
-/// [`content`] the CSV data to parse
-/// [`delimiter`] The delimiter used in the data, for example a pipe (`|`) or a tab (`   `)
-/// [`has_headers`] If the data's first line contains the titles of each column or not
-///
-/// [`content`]: #parse.content
-/// [`delimiter`]: #parse.delimiter
-/// [`has_headers`]: #parse.has_headers
-///
-/// # Examples
-///
-/// Basic usage:
-/// ```no_run
-/// use rustsv::prelude::*;
-/// // Create our input data
-/// let input: &str = "surname,initial,address,phone number\
-/// Smith,A,\"14 Made up Drive, Made up City, Ohio\",216-235-3744\
-/// Doe,J,\"15 Fake Street, Phonyville, Texas\",210-214-5737";
-///
-/// // Parse the `input` into `Content`
-/// let content: Content = parse(input, ',', true);
-/// ```
-pub fn parse<A>(content: A, delimiter: char, has_headers: bool) -> structs::Content where A: Into<String> {
-    let tree = tokenizer::tokenize(delimiter, content.into());
-    let body = parser::parse(tree, has_headers);
-    body
-}
-
-#[cfg(feature = "std")]
-/// Reads a file and parses it into an instance of `Content`
-///
-/// The method takes a path to a file, and then deconstructs the data, turning it into a special, serialization free structure [`Content`]: structs.Content
+/// The method will deconstruct the provided data, turning it into a special, serialization free structure [`Content`](structs/struct.Content.html)
 ///
 /// `content` the CSV data to parse
 /// `delimiter` The delimiter used in the data, for example a pipe (`|`) or a tab (`   `)
@@ -93,6 +78,35 @@ pub fn parse<A>(content: A, delimiter: char, has_headers: bool) -> structs::Cont
 ///
 /// # Examples
 ///
+/// Basic usage:
+/// ```
+/// use rustsv::prelude::*;
+/// // Create our input data
+/// let input: &str = "surname,initial,address,phone number\n\
+/// Smith,A,\"14 Made up Drive, Made up City, Ohio\",216-235-3744\n\
+/// Doe,J,\"15 Fake Street, Phonyville, Texas\",210-214-5737";
+///
+/// // Parse the `input` into `Content`
+/// let content: Content = parse(input, ',', true);
+///
+/// assert_eq!(content[0]["surname"], String::from("Smith"))
+/// ```
+pub fn parse<A>(content: A, delimiter: char, has_headers: bool) -> structs::Content where A: Into<String> {
+    let tree = tokenizer::tokenize(delimiter, content.into());
+    let body = parser::parse(tree, has_headers);
+    body
+}
+
+/// Reads a file and parses it into an instance of [`Content`](structs/struct.Content.html)
+///
+/// The method takes a path to a file, and then deconstructs the data, turning it into a special, serialization free structure [`Content`](structs/struct.Content.html)
+///
+/// `path` the path to the file
+/// `delimiter` The delimiter used in the data, for example a pipe (`|`) or a tab (`   `)
+/// `has_headers` If the data's first line contains the titles of each column or not
+///
+/// # Examples
+///  > Note: this code is correct at the time of documentation, it has the `no_run` tag to ensure the doc tests do not fail due to an unavoidable IO Error
 /// Basic usage:
 /// ```no_run
 /// use rustsv::prelude::*;
@@ -110,9 +124,41 @@ pub fn read<A>(path: A, delimiter: char, has_headers: bool) -> Result<structs::C
 }
 
 
+#[cfg(feature = "http")]
+/// Fetches a URL and parses it into an instance of [`Content`](structs/struct.Content.html) (Requires the `http` feature)
+///
+/// The method takes a URL, fetches it, and then deconstructs the data, turning it into a special, serialization free structure [`Content`](structs/struct.Content.html)
+///
+/// `url` the URL to fetch
+/// `delimiter` The delimiter used in the data, for example a pipe (`|`) or a tab (`   `)
+/// `has_headers` If the data's first line contains the titles of each column or not
+///
+/// # Examples
+///  > Note: this code is correct at the time of documentation, it has the `no_run` tag to ensure the doc tests do not fail due to an unavoidable IO Error
+/// Basic usage:
+/// ```no_run
+/// use rustsv::prelude::*;
+/// // Parse the `input` into `Content`
+/// let content: Content = fetch("https://domain.tld/path/to/file", ',', true)?;
+/// ```
+pub fn fetch<A>(url: A, delimiter: char, has_headers: bool) -> Result<structs::Content, Box<dyn Error>> where A: Into<String> {
+    use reqwest;
+    let p = url.into();
+    let response = reqwest::blocking::get(&p);
+    return if response.is_ok() {
+        let text = response.unwrap().text().unwrap();
+        Ok(parse(text, delimiter, has_headers))
+    } else {
+        Err(Box::new(response.unwrap_err()))
+    };
+}
+
+pub use crate::structs::{Entry, Content};
+
 #[cfg(test)]
 mod tests {
     use crate::prelude::*;
+
     #[test]
     // CSV sample file is provided free of charge by EForExcel (http://eforexcel.com/wp/downloads-18-sample-csv-files-data-sets-for-testing-sales/)
     fn test_parsing() {
@@ -130,6 +176,13 @@ mod tests {
                 println!("{}: {}", reference.0, reference.1);
             }
         }
+    }
+
+    #[test]
+    fn test_fetch_parse() {
+        let url = "https://www.stats.govt.nz/assets/Uploads/Business-price-indexes/Business-price-indexes-June-2020-quarter/Download-data/business-price-indexes-june-2020-quarter-corrections-to-previously-published-statistics.csv";
+        let csv = crate::fetch(url, ',', true).unwrap();
+        assert_eq!(csv[0]["Revised"], String::from("1434"))
     }
 
     #[test]

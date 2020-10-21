@@ -11,7 +11,8 @@ license = "MIT"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [features]
-default = ["nostd", "std"]
-nostd = []
-std = []
+default = []
+http = ["reqwest/blocking"]
+
 [dependencies]
+reqwest = { version = "0.10.8", features = ["blocking"] }

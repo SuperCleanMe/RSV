@@ -27,30 +27,41 @@ pub fn parse(tree: Vec<Token>, has_headers: bool) -> Content {
                 }
             }
             Tokens::NewLine => {
-                if in_head && has_headers {
-                    headers.push(body.clone());
-                    in_head = false;
-                    content.columns = headers.clone();
-                } else {
-                    row.push(body.clone());
-                    if content.columns.len() > 0 {
-                        content.rows.push(Entry::from_vec(row.clone(), Some(content.columns.clone())))
+                if !in_quote {
+                    if in_head && has_headers {
+                        headers.push(body.clone());
+                        in_head = false;
+                        content.columns = headers.clone();
                     } else {
-                        content.rows.push(Entry::from_vec(row.clone(), None))
+                        row.push(body.clone());
+                        if content.columns.len() > 0 {
+                            content.rows.push(Entry::from_vec(row.clone(), Some(content.columns.clone())))
+                        } else {
+                            content.rows.push(Entry::from_vec(row.clone(), None))
+                        }
                     }
+                    content.raw_lines.push(line);
+                    line = String::new();
+                    body = String::new();
+                    row = Vec::<String>::new()
+                } else {
+                    body = format!("{}{}", body, token.value);
+                    line = format!("{}{}", line, token.value);
                 }
-                content.raw_lines.push(line);
-                line = String::new();
-                body = String::new();
-                row = Vec::<String>::new()
             }
             _ => {
                 if token.value != '\r' {
-                    if token.value == '"' {
-                        if in_quote {
-                            in_quote = false;
+                    if token.value == '"' && previous.is_some() {
+                        let prv = previous.unwrap();
+                        if prv.value == '"' {
+                            body = format!("{}{}", body, token.value);
+                            line = format!("{}{}", line, token.value);
                         } else {
-                            in_quote = true;
+                            if in_quote {
+                                in_quote = false;
+                            } else {
+                                in_quote = true;
+                            }
                         }
                     }
                     body = format!("{}{}", body, token.value);

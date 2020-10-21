@@ -1,10 +1,7 @@
-#[cfg(feature = "std")]
 use std::ops::Index;
 use std::collections::HashMap;
 
 
-
-#[cfg(feature = "std")]
 /// Represents a single row of data in the parsed result.
 #[derive(Debug, Clone)]
 pub struct Entry {
@@ -23,7 +20,6 @@ pub struct Content {
     pub rows: Vec<Entry>,
 }
 
-#[cfg(feature = "std")]
 impl Index<usize> for Content {
     type Output = Entry;
 
@@ -42,11 +38,10 @@ impl Index<&str> for Entry {
             v.unwrap()
         } else {
             &self.null_val
-        }
+        };
     }
 }
 
-#[cfg(feature = "std")]
 impl Iterator for Content {
     type Item = Entry;
 
@@ -57,7 +52,7 @@ impl Iterator for Content {
             Some(self.rows[i].clone())
         } else {
             None
-        }
+        };
     }
 }
 

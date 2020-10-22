@@ -107,7 +107,6 @@ let first_row: Entry = content[0];
 
 let entry_name: String = first_row["name"];
 ```
-Now, I know what you are thinking "well that is not very rusty", dont worry for all of you die-hard rusty api users, I have an update coming soon for you, but for now im taking it slow and introducing this API first.
 
 ### What's Next?
 Well, I have already got some ideas of what I want to provide in the next minor release of this library, and so I will be working very heavily on that for now.
@@ -124,10 +123,10 @@ Well, if you found a bug, or you want to request a feature, the best place to re
 ### References
 
 #### reference 1: "Serde"
-Serde is a serialization and deserialization utility, providing the groundwork for almost all of the (de)serialization libraries out there, I am planning to integrate Serde compatibility into RSV in the next big update
+Serde is a serialization and deserialization utility, providing the groundwork for almost all of the (de)serialization libraries out there.
 
 #### reference 2: "Serde free serialization"
-This simply means that you are not required to use Serde to serialize your data, a flaw that most of the other CSV libraries seem to share
+This simply means that you are not required to use Serde to serialize your data, a flaw that most of the other CSV libraries seem to share.
 
 #### reference 3: `http` feature
 To enable the HTTP feature of RSV, modify your dependency for RustSV to look like this:

@@ -1,9 +1,14 @@
-# <div align="center">RSV</div>
 <p align="center">
-    <img src="https://github.com/fatalcenturion/RSV/workflows/Rust/badge.svg" alt="Build Status"/> <img alt="GitHub issues" src="https://img.shields.io/github/issues/fatalcenturion/RSV"/> <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/fatalcenturion/RSV"/ >
+	<img align="center" src="https://raw.githubusercontent.com/fatalcenturion/RSV/media/logo_transparent.png"  width="150px"/>
+	<br>
+	<div align="center">A Rust CSV parser, built for the modern age.</div>
+	<br>
+	<p align="center">
+	<img  align="center" src="https://github.com/fatalcenturion/RSV/workflows/Rust/badge.svg" alt="Build Status"/>
+	<img align="center"  alt="GitHub issues" src="https://img.shields.io/github/issues/fatalcenturion/RSV"/>
+	<img  align="center" alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/fatalcenturion/RSV"/ >
+	</p>
 </p>
-<div align="center">A Rust CSV parser, built for the modern age.</div>
-
 
 ### Why should I use RSV?
 A variety of reasons including the fact that this library does not require any external code to perform its task.
@@ -107,6 +112,9 @@ let first_row: Entry = content[0];
 
 let entry_name: String = first_row["name"];
 ```
+
+#### Constructing a CSV programmatically
+
 
 ### What's Next?
 Well, I have already got some ideas of what I want to provide in the next minor release of this library, and so I will be working very heavily on that for now.

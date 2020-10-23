@@ -1,5 +1,5 @@
 <p align="center">
-	<img align="center" src="https://raw.githubusercontent.com/fatalcenturion/RSV/media/logo_transparent.png"  width="150px"/>
+	<img align="center" src="https://raw.githubusercontent.com/fatalcenturion/RSV/media/logo_transparent.png"  width="300px"/>
 	<br>
 	<div align="center">A Rust CSV parser, built for the modern age.</div>
 	<br>
